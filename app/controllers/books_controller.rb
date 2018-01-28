@@ -2,20 +2,35 @@ class BooksController < ApplicationController
   def top
   end
 
+  def ensure_correct_user
+    @post = Post.find_by(id:params[:id])
+    if @post.user_id != @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to("/books/index")
+    end
+  end
+
+
   def index
   	# 空のモデルをビューへ渡す
     @book = Book.new
+    @User = User.new
     # booksテーブルから全てのデータを取得し、変数@booksに代入しています
     @books = Book.all
+    # binding.pry
+    # ↓これだと、削除した本のidでユーザーを探そうとしてしまう。
+    # @user = User.find(params[:id])
   end
 
   def create
     # ストロングパラメーターを使用
+    # @book = Book.new(content: params[:content], user_id: @current_user.id)
     book = Book.new(book_params)
+    book.user_id = current_user.id
     # DBへ保存する
     book.save
-    # 詳細画面へリダイレクト
-    redirect_to '/books'
+    # マイページへリダイレクトただ、これだけじゃIDを取得できないのでerrorになる。そこで上に書いたように親であるbookからカラムに持っているuser_idを持ってきて、さらにログイン中のなのでcurrent_user.idとなる。『book.user_id = current_user.id』
+    redirect_to user_path(book.user_id)
   end
 
   def show
@@ -34,12 +49,13 @@ class BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy
+    # メソッドなので、destroyではなくdelite
+    @book.delete
     redirect_to books_path
   end
 
   private
       def book_params
-        params.require(:book).permit(:title, :body)
+        params.require(:book).permit(:title, :body, :user_id)
       end
 end

@@ -1,0 +1,55 @@
+<h1>User info</h1>
+
+
+<div class="profile-container">
+    <%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "img-circle pull-left profile-img",fallback: "noimage.png" %>
+    <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
+	name   <%= @user.name %>
+    intro   <%= @user.intro %>
+
+
+</div>
+
+<body>
+<h1>Books</h1>
+<table>
+	<tr>
+		<th>Books</th>
+		<th>Title</th>
+		<th>Comment</th>
+	</tr>
+	<% @books.each do |book| %>
+	<tr>
+		<td><span><%= attachment_image_tag @user, :profile_image, :fill, 30, 30, format: 'jpeg', class: "img-circle pull-left profile-img",fallback: "noimage.png" %></span></td>
+		<td><span><%= book.title %></span></td>
+		<td><span><%= book.body %></span></td>
+		<td><%=link_to book.title , "/books/#{book.id}" %></td>
+		<td><%=link_to 'Edit' , "/books/#{book.id}/edit" %></td>
+		<td><%= link_to 'destory', "/books/#{book.id}", method: :delete, "data-confirm" => "Are You Sure" %></td>
+	</tr>
+	<% end %>
+</table>
+
+
+
+<h2>New book</h2>
+
+<!-- form_for部分 -->
+<%= form_for(@book) do |f| %>
+ 
+    <p>Title</p>
+    <%= f.text_field :title %>
+
+    <p>Body</p>
+    <%= f.text_area :body %>
+
+    <p> </p>
+    <%= f.submit 'Create Book' %>
+ 
+<% end %>
+</body>
+
+
+

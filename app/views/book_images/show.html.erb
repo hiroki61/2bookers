@@ -1,8 +1,8 @@
 <p><Strong>Title</Strong></p>
 <%= @book.title %>
-<p><Strong>Comment</Strong></p>
+<p><Strong>Body</Strong></p>
 <%= @book.body %>
 <div class="click">
 <%=link_to 'Edit' , "/books/#{@book.id}/edit" %>
-<%= link_to 'destory', "/books/#{@book.id}", method: :delete, "data-confirm" => "Are You Sure" %>
+<%=link_to 'Back' , "/books" %>
 </div>

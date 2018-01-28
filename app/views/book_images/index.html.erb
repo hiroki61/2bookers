@@ -1,24 +1,17 @@
-<%= render 'shared/author' %>
-
-
 <body>
-
 <h1>Books</h1>
 <table>
 	<tr>
 		<th>Title</th>
 		<th>Body</th>
 	</tr>
-	<% @books.each do |book| %>
+	<% @book_image.each do |book| %>
 	<tr>
 		<td><span><%= book.title %></span></td>
 		<td><span><%= book.body %></span></td>
 		<td><%=link_to 'Show' , "/books/#{book.id}" %></td>
-		<% if current_user.id == book.user_id %>
 		<td><%=link_to 'Edit' , "/books/#{book.id}/edit" %></td>
-		<td><%= link_to 'destory', "/books/#{book.id}", method: :delete, "data-confirm" => "Are You Sure" %></td>	
-		<% end %>
-		
+		<td><%= link_to 'destory', "/books/#{book.id}", method: :delete, "data-confirm" => "Are You Sure" %></td>
 	</tr>
 	<% end %>
 </table>
