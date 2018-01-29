@@ -20,6 +20,7 @@ class BooksController < ApplicationController
     # binding.pry
     # ↓これだと、削除した本のidでユーザーを探そうとしてしまう。
     # @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def create

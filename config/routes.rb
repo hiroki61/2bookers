@@ -9,4 +9,8 @@ Rails.application.routes.draw do
  # get '/top' => 'books#top'ではなく以下のように記述することでURLがhttp://localhost:3000/topではなくhttp://localhost:3000/でよくなる。
  root 'books#top'
 
+ get "books/index"
+ get "users/index"
+
+
 end
