@@ -1,4 +1,11 @@
+<%= render 'books/author', user: @user %>
+
+
+
+<%= render 'books/sauthor', book: @book %>
+
 <body>
+
 <h1>Books</h1>
 <table>
 	<tr>
@@ -10,29 +17,17 @@
 		<td><span><%= book.title %></span></td>
 		<td><span><%= book.body %></span></td>
 		<td><%=link_to 'Show' , "/books/#{book.id}" %></td>
+		<% if current_user.id == book.user_id %>
 		<td><%=link_to 'Edit' , "/books/#{book.id}/edit" %></td>
-		<td><%= link_to 'destory', "/books/#{book.id}", method: :delete, "data-confirm" => "Are You Sure" %></td>
+		<td><%= link_to 'destory', "/books/#{book.id}", method: :delete, "data-confirm" => "Are You Sure" %></td>	
+		<% end %>
+		
 	</tr>
 	<% end %>
 </table>
 
 
 
-<h2>New book</h2>
-<!-- form_for部分 -->
-<%= form_for(@book) do |f| %>
- 
-    <p>Title</p>
-    <%= f.text_field :title %>
-
-    <p>Body</p>
-    <%= f.text_area :body %>
-
-    <p> </p>
-    <%= f.submit 'Create Book' %>
- 
-<% end %>
-</body>
 
 
 

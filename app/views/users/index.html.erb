@@ -1,0 +1,24 @@
+<%= render 'users/author', user: @user %>
+
+
+
+<%= render 'users/sauthor', book: @book %>
+
+
+
+
+<h1>Users</h1>
+<table>
+	<tr>
+		<th>image</th>
+		<th>name</th>
+		<th>books</th>
+	</tr>
+	<% @users.each do |user| %>
+	<tr>
+		<td><span><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img",fallback: "noimage.png" %></span></td>
+		<td><span><%= user.name %></span></td>
+		<!-- <td><%=link_to 'Show' , "user_path" %></td> -->
+	</tr>
+	<% end %>
+</table>
