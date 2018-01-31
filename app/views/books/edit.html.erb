@@ -1,11 +1,18 @@
-<h1>Editing Book</h1>
-<%= form_for(@book) do |f| %>
-    <p>Title<p>
-    <%= f.text_field :title %>
-    <p>Body<p>
-    <%= f.text_area :body %>
-    <p> </p>
-    <%= f.submit 'Update Book' %>
-    <%=link_to 'Show' , "/books/#{@book.id}" %>
-    <%=link_to 'Back' , "/books" %>
-<% end %>
+<div class="container"> <!-- ここを追加 -->
+	<div class="row">   <!-- ここを追加 -->
+		<div class="col-lg-8">
+			<h1>Editing Book</h1>
+				<%= form_for(@book) do |f| %>
+    				<p>Title</p>
+    				<%= f.text_field :title %>
+    				<p>Opinion</p>
+    				<%= f.text_area :body %>
+    				<p> </p>
+    				<%= f.submit 'Update Book' %>
+    				<%=link_to 'Show' , "/books/#{@book.id}" %>
+    				<%=link_to 'Back' , "/books" %>
+				<% end %>
+		</div>
+	</div>
+</div>
+

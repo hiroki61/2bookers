@@ -1,24 +1,34 @@
-<%= render 'users/author', user: @user %>
+<!-- ログイン時のUsers -->
+<div class="container"> <!-- ここを追加 -->
+	<div class="row">   <!-- ここを追加 -->
+		<div class="col-lg-4">
+			<%= render 'users/author', user: @user %>
 
+			<%= render 'users/sauthor', book: @book %>
+		</div>
 
-
-<%= render 'users/sauthor', book: @book %>
-
-
-
-
-<h1>Users</h1>
-<table>
-	<tr>
-		<th>image</th>
-		<th>name</th>
-		<th>books</th>
-	</tr>
-	<% @users.each do |user| %>
-	<tr>
-		<td><span><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', class: "img-circle pull-left profile-img",fallback: "noimage.png" %></span></td>
-		<td><span><%= user.name %></span></td>
-		<!-- <td><%=link_to 'Show' , "user_path" %></td> -->
-	</tr>
-	<% end %>
-</table>
+		<div class="col-lg-8">
+			<h1>Users</h1>
+			<table class="table table-striped">
+				<tr>
+				<th>image</th>
+				<th>name</th>
+				<th>   </th>
+				</tr>
+				<% @users.each do |user| %>
+					<tr>
+					<td><span>
+					<% if user.profile_image %>
+    					<%= attachment_image_tag user, :profile_image, :fill, 75, 75, format: 'jpeg', class: "img-circle pull-left profile-img" %>
+    				<% else %>
+    				<p><%= image_tag 'noimage.png', :width => '75', :height => '75' %></p>
+					<% end %>
+					</span></td>
+					<td><span><%= user.name %></span></td>
+					<td><%=link_to 'Show' , user_path(user) %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
