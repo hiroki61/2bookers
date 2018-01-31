@@ -18,15 +18,6 @@ class ApplicationController < ActionController::Base
     user_path(current_user)
   end
 
-  # def ensure_correct_user
-  #   @book = Book.find_by(id:params[:id])
-  #   if @book.user_id != @current_user.id
-  #     flash[:notice] = "権限がありません"
-  #     redirect_to("/")
-  # 	end
-  # end
-
-  
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])

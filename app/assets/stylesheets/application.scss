@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";  /* ここを追加 */
+@import "bootstrap";            /*ここを追加*/
+
+
 * {
 	margin: 0;
 	padding: 0;
@@ -47,4 +51,40 @@ td a:hover {
 td a:visited{
 	color: grey;
 }
+header {
+	line-height: 50px;
+}
 
+
+.glyphicon, .glyphicon-book{
+	font-size: 20px;
+	color: white;
+	margin-right: 15px;
+}
+
+nav ul span a{
+	font-size: 20px;
+	color: white;
+
+}
+
+.col-lg-8 {
+	padding-top: 50px;
+}
+
+
+.link_box{
+	width: 100%;
+}
+
+.top {
+	text-align: center;
+	font-size: 20px;
+}
+.top1 {
+	text-align: center;
+}
+
+.footer {
+  text-align:right;
+}
